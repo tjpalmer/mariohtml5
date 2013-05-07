@@ -26,6 +26,11 @@ Enjine.Application.prototype = {
         this.timer = new Enjine.GameTimer();
         Enjine.KeyboardInput.Initialize();      
         this.canvas.Initialize("canvas", resWidth, resHeight);
+        if (this.canvas.Canvas.hasAttribute('tabindex')) {
+          // If it's focusable, require focus.
+          // TODO Better check than tabindex?
+          Enjine.KeyboardInput.Element = this.canvas.Canvas;
+        }
         this.timer.UpdateObject = this;
         
         this.stateContext = new Enjine.GameStateContext(defaultState);
