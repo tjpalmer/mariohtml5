@@ -73,11 +73,18 @@ module.exports = function(grunt) {
       },
     },
 
+    watch: {
+      typescript: {
+        files: ["code/*", "Enjine/*"],
+        tasks: ['default'],
+      }
+    },
+
   });
 
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-uglify");
-  //grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-contrib-watch");
 
   grunt.registerTask('default', ['concat', 'uglify']);
 

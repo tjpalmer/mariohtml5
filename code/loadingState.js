@@ -60,6 +60,16 @@ Mario.LoadingState.prototype.Enter = function() {
 
   Enjine.Resources.AddImages(this.Images);
 
+  if (!window.Audio) {
+    // Useless stub to avoid crashes throughout.
+    window.Audio = (function() {
+      function Audio(src) {}
+      Audio.prototype.canPlayType = function(type) {return false};
+      Audio.prototype.paused = false;
+      Audio.prototype.play = function() {};
+      return Audio;
+    })();
+  }
   var testAudio = new Audio();
 
   if (testAudio.canPlayType("audio/mp3")) {
